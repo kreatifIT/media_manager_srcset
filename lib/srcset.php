@@ -128,7 +128,10 @@ class rex_media_srcset
     {
         $image = null;
 
-        preg_match('/<img([^>]+)?src="([^"]+)"([^>]+)?\/?>/i', $content, $match);
+        if (!preg_match('/<img([^>]+)?data-lazy="([^"]+)"([^>]+)?\/?>/i', $content, $match)){
+            preg_match('/<img([^>]+)?src="([^"]+)"([^>]+)?\/?>/i', $content, $match);
+        }
+
         if(!empty($match[2]))
         {
             // an IMG element with a SRC attribute was found...
